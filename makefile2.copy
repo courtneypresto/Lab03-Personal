@@ -1,0 +1,21 @@
+CXX = g++
+CPPFLAGS = -g -Wall
+BIN_DIR = bin
+
+
+all: $(BIN_DIR)/lab3
+
+$(BIN_DIR)/lab3: $(BIN_DIR)/attackMove.o $(BIN_DIR)/battle.o $(BIN_DIR)/pokemon.o
+
+$(BIN_DIR)/attackMove.o: lib/attackMove.h $(BIN_DIR)/.dirstamp
+	$(CXX) $(CPPFLAGS) -c src/attackMove.cpp -o $(BIN_DIR)/attackMove.o
+
+$(BIN_DIR)/battle.o: lib/battle.h $(BIN_DIR)/.dirstamp
+	$(CXX) $(CPPFLAGS) -c src/battle.cpp -o $(BIN_DIR)/battle.o
+	
+$(BIN_DIR)/pokemon.o: lib/pokemon.h $(BIN_DIR)/.dirstamp
+	$(CXX) $(CPPFLAGS) -c src/pokemon.cpp -o $(BIN_DIR)/pokemon.o
+
+$(BIN_DIR)/.dirstamp:
+	mkdir -p $(BIN_DIR)
+	touch $(BIN_DIR)/.dirstamp
